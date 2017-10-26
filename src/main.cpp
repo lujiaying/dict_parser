@@ -7,14 +7,28 @@
 #include "utils.h"
 
 int main() {
+    const char DICT_PATTERN_FILE[] = "./test/data/simple.dict";
+    const char DICT_FILE[] = "./test/data/simple.txt";
     goodcoder::DictParser dp;
-    std::cout << "hello world" << std::endl;
+    goodcoder::DictParserRet::flag_t ret;
 
-    std::ifstream fin("./test/data/simple.txt");
-    std::vector<std::string> v;
-    std::string line;
-    while (std::getline(fin, line)) {
-        std::cout << line << std::endl;
+    ret = dp.init(DICT_PATTERN_FILE);
+    if (ret != goodcoder::DictParserRet::SUCCESS) {
+        std::cerr << "[ERROR] Init dict_pattern_file" << std::endl;
+        exit(-1);
     }
+
+    std::string line;
+    std::ifstream fin(DICT_FILE);
+    while (std::getline(fin, line)) {
+        int a;
+        int b;
+        float c;
+        dp.do_parse(line, 0, a);
+        dp.do_parse(line, 1, b);
+        dp.do_parse(line, 2, c);
+        std::cout << a << " " << b << " " << c << std::endl;
+    }
+
     return 0;
 }
