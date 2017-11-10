@@ -57,8 +57,8 @@ DictParserRet::flag_t DictParser::_parse_built_in(const int& index, int& val) {
     if (v > std::numeric_limits<int>::max()) {
         val = std::numeric_limits<int>::max();
         return DictParserRet::OVERFLOW;
-    } else if (v < std::numeric_limits<int>::min()) {
-        val = std::numeric_limits<int>::min();
+    } else if (v < std::numeric_limits<int>::lowest()) {
+        val = std::numeric_limits<int>::lowest();
         return DictParserRet::OVERFLOW;
     } else {
         val = static_cast<int>(v);
@@ -90,8 +90,8 @@ DictParserRet::flag_t DictParser::_parse_built_in(const int& index, float& val) 
     if (v > std::numeric_limits<float>::max()) {
         val = std::numeric_limits<float>::max();
         return DictParserRet::OVERFLOW;
-    } else if (v < std::numeric_limits<float>::min()) {
-        val = std::numeric_limits<float>::min();
+    } else if (v < std::numeric_limits<float>::lowest()) {
+        val = std::numeric_limits<float>::lowest();
         return DictParserRet::OVERFLOW;
     } else {
         val = static_cast<float>(v);
